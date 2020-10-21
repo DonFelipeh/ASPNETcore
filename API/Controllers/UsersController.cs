@@ -1,4 +1,6 @@
-using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System;
+using System.Threading.Tasks;
 using System.Linq;
 using API.Entities;
 using System.Collections.Generic;
@@ -39,7 +41,7 @@ namespace API.Controllers
         public async Tasks<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             //using Microsoft.EntityFrameworkCore;
-            var users =_context.Users.ToListAsync(); 
+            var users = _context.Users.ToListAsync(); 
             return await users;
 
         }
