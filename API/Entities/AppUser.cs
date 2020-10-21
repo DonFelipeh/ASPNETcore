@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 namespace API.Entities
 {
     public class AppUser

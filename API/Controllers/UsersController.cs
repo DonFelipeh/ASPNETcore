@@ -1,12 +1,12 @@
-using System.Runtime.CompilerServices;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-using API.Entities;
-using System.Collections.Generic;
 using API.Data;
-using Microsoft.AspNetCore.Mvc;
+using API.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
@@ -21,37 +21,39 @@ namespace API.Controllers
             _context = context;
         }
 
-        [HttpGet]
+      
         //using system.Collection.Generic  for IEnumerable
         //using API.Entities for AppUser
 
         //Synchronous
-        // public ActionResult<IEnumerable<AppUser>> GetUsers()
-        //{
-           //using system.Linq
-        //  var users =_context.Users.ToList();  
-        //  return await users;
-        //}
-        //public ActionResult<AppUser> GetUser(int id)
-        //{
-        //    var user =_context.Users.Find(id);
-            
-        //    return user;
-        //}        
-        public async Tasks<ActionResult<IEnumerable<AppUser>>> GetUsers()
+/*          public ActionResult<IEnumerable<AppUser>> GetUsers()
+        {
+         //using system.Linq
+         var users =_context.Users.ToList();  
+         return users;
+        } */
+         [HttpGet]
+        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
             //using Microsoft.EntityFrameworkCore;
-            var users = _context.Users.ToListAsync(); 
-            return await users;
+            var users = await _context.Users.ToListAsync(); 
+            return users;
 
         }
         //api/users/3
-        [HttpGet("{id}")]
-        public async Tasks<ActionResult<AppUser>> GetUser(int id)
+      
+/*         public ActionResult<AppUser> GetUser(int id)
         {
-            var user =_context.Users.FindAsync(id);
+            var user =_context.Users.Find(id);
             
-            return await user;
+            return user;
+        }  */
+          [HttpGet("{id}")]
+        public async Task<ActionResult<AppUser>> GetUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            
+            return user;
         }
     }
 }
