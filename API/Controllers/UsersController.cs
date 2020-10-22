@@ -20,13 +20,11 @@ namespace API.Controllers
         {
             _context = context;
         }
-
       
         //using system.Collection.Generic  for IEnumerable
         //using API.Entities for AppUser
-
         //Synchronous
-/*          public ActionResult<IEnumerable<AppUser>> GetUsers()
+/*      public ActionResult<IEnumerable<AppUser>> GetUsers()
         {
          //using system.Linq
          var users =_context.Users.ToList();  
@@ -38,22 +36,19 @@ namespace API.Controllers
             //using Microsoft.EntityFrameworkCore;
             var users = await _context.Users.ToListAsync(); 
             return users;
-
-        }
-        //api/users/3
+        }       
       
-/*         public ActionResult<AppUser> GetUser(int id)
+/*      public ActionResult<AppUser> GetUser(int id)
         {
-            var user =_context.Users.Find(id);
-            
+            var user =_context.Users.Find(id);           
             return user;
         }  */
-          [HttpGet("{id}")]
+         [HttpGet("{id}")]  //api/users/3
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            
+            var user = await _context.Users.FindAsync(id);         
             return user;
         }
+        
     }
 }
